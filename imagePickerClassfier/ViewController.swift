@@ -35,8 +35,10 @@ class ViewController: UIViewController {
 extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         dismiss(animated: true, completion: nil)
+        
         guard let image = info[.originalImage] as? UIImage else { return }
         self.pickedImage.image = image
+        
         guard let ciImage = CIImage(image: image) else { return }
         coreMLProcessing(image: ciImage)
     }
